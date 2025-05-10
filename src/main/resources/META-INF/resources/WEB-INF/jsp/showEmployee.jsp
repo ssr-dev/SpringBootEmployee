@@ -1,5 +1,6 @@
 <%@ page import="co.edu.uptc.firstJavaWebApp.model.Employee" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Información del Empleado</title>
@@ -15,6 +16,12 @@
     <a href="${pageContext.request.contextPath}/introShowEmployee">Buscar empleado</a>
     <a href="${pageContext.request.contextPath}/showEmployees">Mostrar empleados</a>
     <a href="${pageContext.request.contextPath}/introDeleteEmployee">Borrar Empleado</a>
+
+    <a href="${pageContext.request.contextPath}/introAddCustomer">Crear cliente</a>
+    <a href="${pageContext.request.contextPath}/introModifyEmployee">Modificar cliente</a>
+    <a href="${pageContext.request.contextPath}/introShowEmployee">Buscar cliente</a>
+    <a href="${pageContext.request.contextPath}/showEmployees">Mostrar clientes</a>
+    <a href="${pageContext.request.contextPath}/introDeleteEmployee">Borrar clientes</a>
     <a href="${pageContext.request.contextPath}/menu">Menu principal</a>
 </div>
 
@@ -26,18 +33,16 @@
         <button type="submit">Buscar</button>
     </form>
 
-    <%
-        Employee emp = (Employee) request.getAttribute("empleado");
-        if (emp != null) {
-    %>
-    <h2>Información del Empleado</h2>
-    <table>
-        <tr><td>ID:</td><td><%= emp.getId() %></td></tr>
-        <tr><td>Nombre:</td><td><%= emp.getName() %></td></tr>
-        <tr><td>Email:</td><td><%= emp.getEmail() %></td></tr>
-        <tr><td>Teléfono:</td><td><%= emp.getPhone() %></td></tr>
-    </table>
-    <% } %>
+
+    <c:if test="${empleado != null}">
+        <h2>Información del Empleado</h2>
+        <table>
+            <tr><td>ID:</td><td>${empleado.id}</td></tr>
+            <tr><td>Nombre:</td><td>${empleado.name}</td></tr>
+            <tr><td>Email:</td><td>${empleado.email}</td></tr>
+            <tr><td>Teléfono:</td><td>${empleado.phone}</td></tr>
+        </table>
+    </c:if>
 </div>
 
 </body>

@@ -22,14 +22,19 @@ public class IntroModifyEmployee extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             String idParam = req.getParameter("emp_id");
-            if (idParam != null && !idParam.isEmpty()) {
+            if (idParam != null && idParam.isEmpty()) {
                 int id = Integer.parseInt(idParam);
                 EmployeeList empList = (EmployeeList) req.getSession().getAttribute("employeelist");
 
                 if (empList != null) {
                     Employee found = empList.findEmployeeById(id);
-                    if (found != null) {
+                    if (found != null) { 
                         req.setAttribute("employeeFound", found);
+                    }
+                    else {
+                        req.setAttribute("errorMessage", "El empleado que busca no existe");
+                        req.setAttribute("homePage", req.getContextPath()+"/menu");
+                        req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
                     }
                 }
             }
@@ -38,13 +43,13 @@ public class IntroModifyEmployee extends HttpServlet {
             req.setAttribute("homePage", req.getContextPath() + "/menu");
             req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
         }
-        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/modifyEmployee.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/modifyEmployee.jsp");
         rd.forward(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/modifyEmployee.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/modifyEmployee.jsp");
         rd.forward(req, resp);
     }
 }

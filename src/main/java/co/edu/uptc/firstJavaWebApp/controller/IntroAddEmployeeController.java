@@ -29,7 +29,7 @@ public class IntroAddEmployeeController extends HttpServlet{
     //POST se usa para enviar la información (rellenar formularios)
      protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
          try {
-             RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/addemployee.jsp");
+             RequestDispatcher rd = req.getRequestDispatcher("addemployee.jsp");
              rd.forward(req, resp);
          } catch (Exception e) {
              req.setAttribute("errorMessage", "Ocurrió un error al intentar acceder a la página de agregar empleado.");
