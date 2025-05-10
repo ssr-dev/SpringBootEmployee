@@ -18,10 +18,10 @@
     <a href="${pageContext.request.contextPath}/introDeleteEmployee">Borrar Empleado</a>
 
     <a href="${pageContext.request.contextPath}/introAddCustomer">Crear cliente</a>
-    <a href="${pageContext.request.contextPath}/introModifyEmployee">Modificar cliente</a>
-    <a href="${pageContext.request.contextPath}/introShowEmployee">Buscar cliente</a>
-    <a href="${pageContext.request.contextPath}/showEmployees">Mostrar clientes</a>
-    <a href="${pageContext.request.contextPath}/introDeleteEmployee">Borrar clientes</a>
+    <a href="${pageContext.request.contextPath}/introModifyCustomer">Modificar cliente</a>
+    <a href="${pageContext.request.contextPath}/introShowCustomer">Buscar cliente</a>
+    <a href="${pageContext.request.contextPath}/showCustomers">Mostrar clientes</a>
+    <a href="${pageContext.request.contextPath}/introDeleteCustomer">Borrar clientes</a>
     <a href="${pageContext.request.contextPath}/menu">Menu principal</a>
 </div>
 

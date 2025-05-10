@@ -1,7 +1,6 @@
 package co.edu.uptc.firstJavaWebApp.controller;
 
 import java.io.IOException;
-
 import co.edu.uptc.firstJavaWebApp.model.Employee;
 import co.edu.uptc.firstJavaWebApp.model.EmployeeList;
 import jakarta.servlet.RequestDispatcher;

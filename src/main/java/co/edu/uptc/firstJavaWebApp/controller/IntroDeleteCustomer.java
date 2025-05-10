@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/IntroDeleteCustomer")
+@WebServlet("/introDeleteCustomer")
 public class IntroDeleteCustomer extends HttpServlet{
 
     public IntroDeleteCustomer(){
