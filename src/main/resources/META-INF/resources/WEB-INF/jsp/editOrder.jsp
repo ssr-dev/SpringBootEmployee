@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="co.edu.uptc.firstJavaWebApp.model.Employee" %>
+<%@ page import="co.edu.uptc.firstJavaWebApp.model.Customer" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EmployeeApp - Modificar Empleado</title>
+    <title>CustomerApp - Modificar el pedido</title>
     <style>
         <%@include file="../css/empStyle.css" %>
     </style>
@@ -33,49 +33,44 @@
 </div>
 
 <div class="content">
-    <h1>EMPLOYEE APP - MODIFICAR EMPLEADO</h1>
+    <h1>CUSTOMER APP - MODIFICAR EL PEDIDO</h1>
 
-    <form action="introModifyEmployee" method="post">
+    <form action="introModifyOrder" method="post">
         <table cellspacing="3" cellpadding="3" border="1">
             <tr>
-                <td align="right">ID Empleado:</td>
-                <td><input type="text" name="emp_id" value="${param.emp_id}"></td>
+                <td align="right">ID del pedido:</td>
+                <td><input type="text" name="order_id" value="${param.order_id}"></td>
                 <td><input type="submit" value="Buscar"></td>
             </tr>
         </table>
     </form>
 
     <c:choose>
-        <c:when test="${employeeFound != null}">
-            <h2>Modificar datos del empleado</h2>
-            <form action="modifyEmployee" method="post">
-                <input type="hidden" name="emp_id" value="${employeeFound.id}">
-                <table cellspacing="3" cellpadding="3" border="1">
-                    <tr>
-                        <td align="right">Nombre Empleado:</td>
-                        <td><input type="text" name="emp_name" value="${employeeFound.name}"></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Email empleado:</td>
-                        <td><input type="text" name="emp_email" value="${employeeFound.email}"></td>
-                    </tr>
-                    <tr>
-                        <td align="right">Teléfono empleado:</td>
-                        <td><input type="text" name="emp_phone" value="${employeeFound.phone}"></td>
-                    </tr>
-                </table>
-                <input type="submit" value="Enviar">
+        <c:when test="${orderFound != null}">
+            <h2>Modificar los datos del pedido</h2>
+            <form action="modifyOrder" method="post">
+                <input type="hidden" name="order_id" value="${orderFound.id}"/>
+                    <table cellspacing="3" cellpadding="3" border="1">
+                        <tr>
+                              <td align="right"> Estado del pedido: </td>
+                              <td> <input type="text" name="order_status" value="${orderFound.orderStatus}"> </td>
+                         </tr>
+                         <tr>
+                              <td align="right"> Descripción del pedido: </td>
+                              <td> <input type="text" name="order_description" value="${orderFound.descriptionOrder}"> </td>
+                         </tr>
+
+                    </table>
+                    <input type="submit" value="Enviar">
             </form>
         </c:when>
         <c:otherwise>
-            <c:if test ="${employeeFound == null}">
-            <p style="color: red;">Por favor ingrese un id</p>
+            <c:if test ="${orderFound == null}">
+            <p style="color: red;">Por favor ingrese el ID de un pedido</p>
             </c:if>
-            <c:if test="${param.emp_id != null}">
-                <p style="color: red;">Empleado no encontrado</p>
+            <c:if test="${orderFound != null}">
+                <p style="color: red;">Pedido no encontrado</p>
             </c:if>
-
-
         </c:otherwise>
     </c:choose>
 </div>

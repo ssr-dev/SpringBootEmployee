@@ -1,6 +1,7 @@
 package co.edu.uptc.firstJavaWebApp.controller;
 
 import java.io.IOException;
+
 import co.edu.uptc.firstJavaWebApp.model.Employee;
 import co.edu.uptc.firstJavaWebApp.model.EmployeeList;
 import jakarta.servlet.RequestDispatcher;
@@ -21,7 +22,7 @@ public class IntroModifyEmployee extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             String idParam = req.getParameter("emp_id");
-            if (idParam != null && idParam.isEmpty()) {
+            if (idParam != null && !idParam.isEmpty()) {
                 int id = Integer.parseInt(idParam);
                 EmployeeList empList = (EmployeeList) req.getSession().getAttribute("employeelist");
 
@@ -34,6 +35,7 @@ public class IntroModifyEmployee extends HttpServlet {
                         req.setAttribute("errorMessage", "El empleado que busca no existe");
                         req.setAttribute("homePage", req.getContextPath()+"/menu");
                         req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
+                        return;
                     }
                 }
             }
@@ -41,6 +43,7 @@ public class IntroModifyEmployee extends HttpServlet {
             req.setAttribute("errorMessage", "Ocurrió un error al intentar modificar el empleado.");
             req.setAttribute("homePage", req.getContextPath() + "/menu");
             req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
+            return;
         }
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/modifyEmployee.jsp");
         rd.forward(req, resp);

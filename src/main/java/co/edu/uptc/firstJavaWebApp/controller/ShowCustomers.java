@@ -1,7 +1,8 @@
 package co.edu.uptc.firstJavaWebApp.controller;
 
+import java.io.IOException;
+
 import co.edu.uptc.firstJavaWebApp.model.CustomerList;
-import co.edu.uptc.firstJavaWebApp.model.EmployeeList;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,7 +10,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
 
 
 @WebServlet("/showCustomers")

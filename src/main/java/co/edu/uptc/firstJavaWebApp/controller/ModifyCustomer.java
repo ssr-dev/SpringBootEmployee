@@ -1,5 +1,6 @@
 package co.edu.uptc.firstJavaWebApp.controller;
 import java.io.IOException;
+
 import co.edu.uptc.firstJavaWebApp.model.Customer;
 import co.edu.uptc.firstJavaWebApp.model.CustomerList;
 import jakarta.servlet.ServletException;
@@ -32,6 +33,7 @@ public class ModifyCustomer extends HttpServlet{
                 req.setAttribute("errorMessage", "No se encontró la lista de clientes.");
                 req.setAttribute("homePage", req.getContextPath()+"/menu");
                 req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
+                return;
             }
             boolean searchCustomer = custList.modifyCustomer(customer);
             if (searchCustomer){

@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title> EmployeeApp - Crear cliente</title>
+    <title> EmployeeApp - Eliminar cliente</title>
     <style>
         <%@include file="../css/empStyle.css" %>
     </style>
@@ -22,6 +22,12 @@
     <a href="${pageContext.request.contextPath}/introShowCustomer">Buscar cliente</a>
     <a href="${pageContext.request.contextPath}/showCustomers">Mostrar clientes</a>
     <a href="${pageContext.request.contextPath}/introDeleteCustomer">Borrar clientes</a>
+
+    <a href="${pageContext.request.contextPath}/introAddOrder">Agregar un pedido</a>
+          <a href="${pageContext.request.contextPath}/introModifyOrder">Editar un pedido</a>
+          <a href="${pageContext.request.contextPath}/introDeleteOrder">Eliminar un pedido</a>
+          <a href="${pageContext.request.contextPath}/introShowOrder">Encontrar mis pedidos</a>
+          <a href="${pageContext.request.contextPath}/showOrders">Mostrar todos los pedidos</a>
     <a href="${pageContext.request.contextPath}/menu">Menu principal</a>
 </div>
 

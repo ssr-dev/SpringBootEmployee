@@ -1,7 +1,7 @@
 package co.edu.uptc.firstJavaWebApp.controller;
 
-
 import java.io.IOException;
+
 import co.edu.uptc.firstJavaWebApp.model.Customer;
 import co.edu.uptc.firstJavaWebApp.model.CustomerList;
 import jakarta.servlet.RequestDispatcher;
@@ -17,10 +17,12 @@ public class IntroModifyCustomer extends HttpServlet{
     public IntroModifyCustomer(){
         super();
     }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             String idParam = req.getParameter("cust_id");
-            if (idParam != null && idParam.isEmpty()){
+            if (idParam != null && !idParam.isEmpty()){
                 int id = Integer.parseInt(idParam);
                 CustomerList customerList = (CustomerList) req.getSession().getAttribute("customerList");
                 if (customerList != null){
@@ -31,19 +33,21 @@ public class IntroModifyCustomer extends HttpServlet{
                         req.setAttribute("errorMessage", "El cliente que busca no existe");
                         req.setAttribute("homePage", req.getContextPath()+"/menu");
                         req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
+                        return;
                     }
                 }
             }
-        }catch(Exception e){
+        }catch(NumberFormatException e){
             req.setAttribute("errorMessage", "Ocurrió un error al intentar modificar el cliente.");
             req.setAttribute("homePage", req.getContextPath() + "/menu");
             req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
+            return;
         }
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/modifyCustomer.jsp");
         rd.forward(req, resp);
     }
 
-     @Override
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/jsp/modifyCustomer.jsp");
         rd.forward(req, resp);

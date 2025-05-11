@@ -1,9 +1,10 @@
-<%@ page import="co.edu.uptc.firstJavaWebApp.model.Employee" %>
+<%@ page import="java.util.*" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
-    <title>Información del Empleado</title>
+    <title>Lista de Empleados</title>
     <style>
         <%@include file="../css/empStyle.css" %>
     </style>
@@ -22,7 +23,7 @@
     <a href="${pageContext.request.contextPath}/introShowCustomer">Buscar cliente</a>
     <a href="${pageContext.request.contextPath}/showCustomers">Mostrar clientes</a>
     <a href="${pageContext.request.contextPath}/introDeleteCustomer">Borrar clientes</a>
-    
+
     <a href="${pageContext.request.contextPath}/introAddOrder">Agregar un pedido</a>
           <a href="${pageContext.request.contextPath}/introModifyOrder">Editar un pedido</a>
           <a href="${pageContext.request.contextPath}/introDeleteOrder">Eliminar un pedido</a>
@@ -32,22 +33,33 @@
 </div>
 
 <div class="Content">
-    <h2>Buscar Empleado por ID</h2>
-    <form method="post" action="${pageContext.request.contextPath}/showEmployee">
-        <label for="emp_id">ID del empleado:</label>
-        <input type="number" id="emp_id" name="emp_id" required>
-        <button type="submit">Buscar</button>
-    </form>
 
-    <c:if test="${empleado != null}">
-        <h2>Información del Empleado</h2>
+    <c:choose>
+    <c:when test="${empty orders}">
+        <h2>Lista de pedidos vacía</h2>
+    </c:when>
+    <c:otherwise>
+        <h2>Lista de Pedidos</h2>
         <table>
-            <tr><td>ID:</td><td>${empleado.id}</td></tr>
-            <tr><td>Nombre:</td><td>${empleado.name}</td></tr>
-            <tr><td>Email:</td><td>${empleado.email}</td></tr>
-            <tr><td>Teléfono:</td><td>${empleado.phone}</td></tr>
+            <tr>
+                <th>Id del pedido</th>
+                <th>Documento de identidad del cliente</th>
+                <th>Fecha del pedido</th>
+                <th>Descripción del pedido</th>
+                <th>Estado del pedido</th>
+            </tr>
+            <c:forEach items="${orders}" var="ords">
+                <tr>
+                    <td>${ords.id}</td>
+                    <td>${ords.idCustomerOrder}</td>
+                    <td>${ords.dateOrder}</td>
+                    <td>${ords.descriptionOrder}</td>
+                    <td>${ords.orderStatus}</td>
+                </tr>
+            </c:forEach>
         </table>
-    </c:if>
+         </c:otherwise>
+        </c:choose>
 </div>
 
 </body>
