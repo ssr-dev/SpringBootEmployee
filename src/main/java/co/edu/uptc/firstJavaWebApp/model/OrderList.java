@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class OrderList {
     private List<Order> orderList;
+    private static Set<Integer> usedIds = new HashSet<>();
 
     public OrderList(){
         this.orderList = new ArrayList<>();
@@ -15,6 +16,7 @@ public class OrderList {
 
     public void addOrder(Order order){
         orderList.add(order);
+        usedIds.add(order.getId());
     }
 
     public Order findOrderById(int idOrder){
@@ -26,6 +28,16 @@ public class OrderList {
         return null;
     }
 
+    public List<Order> findOrdersByCustomerId(int customerId) {
+        List<Order> result = new ArrayList<>();
+        for (Order order : orderList) {
+            if (order.getIdCustomerOrder() == customerId) {
+                result.add(order);
+            }
+        }
+        return result;
+    }
+
     public List<Order> getOrderList(){
         return orderList;
     }
@@ -34,17 +46,17 @@ public class OrderList {
         Order order = findOrderById(idOrder);
         if(order != null){
             orderList.remove(order);
+            usedIds.remove(idOrder);
             return true;
         }
         return false;
     }
 
-     public  int generateUniqueId() {
-        Set<Integer> usedIds = new HashSet<>();
+    public int generateUniqueId() {
         Random random = new Random();
         int idOrder;
         do {
-            idOrder = random.nextInt(1_000_000); 
+            idOrder = random.nextInt(1_000_000);
         } while (usedIds.contains(idOrder));
         usedIds.add(idOrder);
         return idOrder;
@@ -59,5 +71,4 @@ public class OrderList {
         }
         return false;
     }
-
 }

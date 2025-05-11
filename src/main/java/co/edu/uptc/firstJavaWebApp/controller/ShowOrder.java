@@ -33,7 +33,7 @@ public class ShowOrder extends HttpServlet {
                 return;
             }
 
-            OrderList orderList = (OrderList) req.getSession().getAttribute("orderlist");
+            OrderList orderList = (OrderList) req.getSession().getAttribute("orderList");
             if (orderList == null) {
                 req.setAttribute("errorMessage", "No se encontró la lista de pedidos.");
                 req.setAttribute("homePage", req.getContextPath() + "/menu");
